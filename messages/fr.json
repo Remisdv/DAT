@@ -1,0 +1,85 @@
+{
+    "meta": {
+        "title": "CYNA — DAT / DCT",
+        "description": "Documentation technique interactive de la plateforme e-commerce CYNA"
+    },
+    "nav": {
+        "home": "Accueil",
+        "introduction": "Introduction",
+        "besoins": "Analyse du besoin",
+        "parcours": "Parcours utilisateurs",
+        "solution": "Solution & technos",
+        "architecture": "Architecture",
+        "securite": "Sécurité & risques",
+        "conception": "Conception détaillée",
+        "api": "Explorateur d'API",
+        "donnees": "Modèle de données",
+        "tests": "Tests & validation",
+        "infrastructure": "Infrastructure",
+        "rgpd": "RGPD & données",
+        "adr": "ADR",
+        "equipe": "Équipe",
+        "sections": {
+            "overview": "Vue d'ensemble",
+            "technical": "Technique",
+            "operations": "Opérations",
+            "appendix": "Annexes"
+        }
+    },
+    "landing": {
+        "badge": "Version 1.0 — Avril 2026",
+        "title": "CYNA",
+        "subtitle": "Plateforme e-commerce de cybersécurité",
+        "description": "Dossier d'architecture et de conception technique. Une documentation interactive pour explorer chaque décision, chaque flux, chaque ligne de code structurante du projet CYNA.",
+        "cta": "Explorer la documentation",
+        "ctaSecondary": "Voir l'architecture",
+        "stats": {
+            "apis": "APIs NestJS",
+            "containers": "Conteneurs Docker",
+            "adr": "Architecture Decision Records",
+            "endpoints": "Endpoints documentés"
+        },
+        "highlights": {
+            "title": "Points forts du projet",
+            "security": {
+                "title": "Défense en profondeur",
+                "desc": "4 couches de sécurité — Nginx, Gateway, APIs, PostgreSQL — avec 2FA obligatoire pour le back-office."
+            },
+            "architecture": {
+                "title": "Monolithe modulaire distribué",
+                "desc": "4 APIs NestJS indépendantes derrière une Gateway unique, orchestrées par Docker Compose."
+            },
+            "payments": {
+                "title": "Paiement Stripe sécurisé",
+                "desc": "PCI-DSS délégué à Stripe. Paiements ponctuels et abonnements récurrents confirmés par webhook signé."
+            },
+            "search": {
+                "title": "Recherche Elasticsearch",
+                "desc": "Scoring BM25, facettes, fallback PostgreSQL. Catalogue cherchable en moins de 200 ms."
+            }
+        }
+    },
+    "toc": {
+        "title": "Sur cette page"
+    },
+    "search": {
+        "placeholder": "Rechercher dans la documentation…",
+        "empty": "Aucun résultat",
+        "shortcut": "Rechercher"
+    },
+    "theme": {
+        "toggle": "Changer le thème"
+    },
+    "print": {
+        "label": "Imprimer / PDF"
+    },
+    "locale": {
+        "fr": "Français",
+        "en": "English"
+    },
+    "footer": {
+        "team": "Équipe",
+        "year": "2026",
+        "school": "Sup de Vinci — Bachelor CPI"
+    }
+}

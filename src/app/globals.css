@@ -1,0 +1,219 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+    --color-bg: #07090f;
+    --color-bg-elev: #0b1220;
+    --color-surface: #0f172a;
+    --color-border: #1f2a44;
+    --color-fg: #e2e8f0;
+    --color-fg-muted: #94a3b8;
+    --color-fg-subtle: #64748b;
+
+    --color-brand: #06b6d4;
+    --color-brand-2: #a78bfa;
+    --color-accent: #22d3ee;
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+}
+
+:root {
+    --bg: #f8fafc;
+    --bg-elev: #ffffff;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --fg: #0f172a;
+    --fg-muted: #475569;
+    --fg-subtle: #64748b;
+    color-scheme: light;
+}
+
+.dark {
+    --bg: #07090f;
+    --bg-elev: #0b1220;
+    --surface: #0f172a;
+    --border: #1f2a44;
+    --fg: #e2e8f0;
+    --fg-muted: #94a3b8;
+    --fg-subtle: #64748b;
+    color-scheme: dark;
+}
+
+html,
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+*,
+::before,
+::after {
+    border-color: var(--border);
+}
+
+a {
+    color: inherit;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--fg-muted) 30%, transparent);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Prose overrides */
+.prose {
+    --tw-prose-body: var(--fg);
+    --tw-prose-headings: var(--fg);
+    --tw-prose-links: var(--color-brand);
+    --tw-prose-bold: var(--fg);
+    --tw-prose-code: var(--color-brand);
+    --tw-prose-quotes: var(--fg-muted);
+    --tw-prose-bullets: var(--fg-muted);
+    --tw-prose-counters: var(--fg-muted);
+    --tw-prose-hr: var(--border);
+    --tw-prose-th-borders: var(--border);
+    --tw-prose-td-borders: var(--border);
+}
+
+.prose :where(code):not(pre code) {
+    background: color-mix(in oklab, var(--color-brand) 12%, transparent);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.prose :where(code)::before,
+.prose :where(code)::after {
+    content: "" !important;
+}
+
+.prose :where(a) {
+    text-decoration: none;
+    border-bottom: 1px dashed color-mix(in oklab, var(--color-brand) 50%, transparent);
+}
+
+.prose :where(a:hover) {
+    border-bottom-color: var(--color-brand);
+}
+
+.prose :where(h2) {
+    scroll-margin-top: 6rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 3rem;
+}
+
+.prose :where(h3, h4) {
+    scroll-margin-top: 6rem;
+}
+
+.prose :where(table) {
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    font-size: 0.92em;
+}
+
+.prose :where(thead th) {
+    background: color-mix(in oklab, var(--color-brand) 8%, transparent);
+    font-weight: 600;
+}
+
+.prose :where(tbody tr:hover) {
+    background: color-mix(in oklab, var(--color-brand) 4%, transparent);
+}
+
+/* Animated hero grid */
+.hero-grid {
+    background-image:
+        linear-gradient(to right, color-mix(in oklab, var(--color-brand) 15%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in oklab, var(--color-brand) 15%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+}
+
+.hero-glow {
+    background: radial-gradient(ellipse at 30% 20%, color-mix(in oklab, var(--color-brand) 35%, transparent), transparent 60%),
+        radial-gradient(ellipse at 80% 80%, color-mix(in oklab, var(--color-brand-2) 35%, transparent), transparent 60%);
+    filter: blur(60px);
+}
+
+/* Mermaid container tweaks */
+.mermaid-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    overflow: auto;
+}
+
+.mermaid-wrapper svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Print */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    aside,
+    header,
+    footer.site-footer {
+        display: none !important;
+    }
+
+    main {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .prose {
+        max-width: 100% !important;
+    }
+
+    a {
+        color: black !important;
+        border: none !important;
+    }
+
+    h1,
+    h2 {
+        page-break-after: avoid;
+    }
+
+    pre,
+    table,
+    figure {
+        page-break-inside: avoid;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+}

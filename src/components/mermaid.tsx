@@ -12,8 +12,32 @@ export function Mermaid({ chart, caption }: Props) {
     const { resolvedTheme } = useTheme();
     const [svg, setSvg] = useState<string>("");
     const [full, setFull] = useState(false);
+    const [visible, setVisible] = useState(false);
+
+    // Only start loading Mermaid once the diagram is near the viewport.
+    useEffect(() => {
+        if (visible) return;
+        const el = ref.current;
+        if (!el) return;
+        if (typeof IntersectionObserver === "undefined") {
+            setVisible(true);
+            return;
+        }
+        const io = new IntersectionObserver(
+            (entries) => {
+                if (entries.some((e) => e.isIntersecting)) {
+                    setVisible(true);
+                    io.disconnect();
+                }
+            },
+            { rootMargin: "200px" },
+        );
+        io.observe(el);
+        return () => io.disconnect();
+    }, [visible]);
 
     useEffect(() => {
+        if (!visible) return;
         let cancelled = false;
         (async () => {
             const mermaid = (await import("mermaid")).default;
@@ -63,7 +87,7 @@ export function Mermaid({ chart, caption }: Props) {
         return () => {
             cancelled = true;
         };
-    }, [chart, resolvedTheme, id]);
+    }, [chart, resolvedTheme, id, visible]);
 
     return (
         <figure className={full ? "fixed inset-4 z-[80] m-0" : "my-6"}>
@@ -81,7 +105,16 @@ export function Mermaid({ chart, caption }: Props) {
                 >
                     {full ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
                 </button>
-                <div ref={ref} dangerouslySetInnerHTML={{ __html: svg }} />
+                {svg ? (
+                    <div ref={ref} dangerouslySetInnerHTML={{ __html: svg }} />
+                ) : (
+                    <div
+                        ref={ref}
+                        className="flex min-h-[240px] items-center justify-center rounded-lg border border-dashed border-[var(--border)] bg-[var(--bg-elev)] text-xs text-[var(--fg-subtle)]"
+                    >
+                        {visible ? "Rendering diagram…" : ""}
+                    </div>
+                )}
             </div>
             {caption && (
                 <figcaption className="mt-2 text-center text-xs text-[var(--fg-subtle)] italic">{caption}</figcaption>
@@ -89,3 +122,4 @@ export function Mermaid({ chart, caption }: Props) {
         </figure>
     );
 }
+

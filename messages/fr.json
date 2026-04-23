@@ -71,11 +71,8 @@
         "toggle": "Changer le thème"
     },
     "print": {
-        "label": "Imprimer / PDF"
-    },
-    "locale": {
-        "fr": "Français",
-        "en": "English"
+        "label": "Télécharger le PDF",
+        "loading": "Génération…"
     },
     "footer": {
         "team": "Équipe",

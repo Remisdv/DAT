@@ -5,8 +5,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { Menu, ShieldCheck, X } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
-import { LocaleSwitcher } from "./locale-switcher";
-import { PrintButton } from "./print-button";
 import { SearchTrigger } from "./search-command";
 import { Sidebar } from "./sidebar";
 import type { Locale } from "@/i18n/routing";
@@ -38,12 +36,6 @@ export function Header() {
 
                 <div className="ml-auto flex items-center gap-2">
                     <SearchTrigger />
-                    <div className="hidden md:block">
-                        <LocaleSwitcher />
-                    </div>
-                    <div className="hidden md:block">
-                        <PrintButton />
-                    </div>
                     <ThemeToggle />
                 </div>
             </header>
@@ -68,10 +60,6 @@ export function Header() {
                             </button>
                         </div>
                         <Sidebar onNavigate={() => setOpen(false)} />
-                        <div className="flex items-center gap-2 px-3 pb-6">
-                            <LocaleSwitcher />
-                            <PrintButton />
-                        </div>
                     </aside>
                 </div>
             )}
